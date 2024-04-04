@@ -29,7 +29,6 @@ TotalYield <- PollinationDeficit4 %>%
 #ggsave(TotalYield, filename = "Figures/TotalYield.jpeg", height = 6, width = 3)
 
 
-
 #Apple variety with CI
 VarietyYield <- PollinationDeficit4 %>% 
   ggplot(aes(x = Apple_variety, y = mean, color = Apple_variety)) + 
@@ -54,12 +53,12 @@ RegionYield <- PollinationDeficit4 %>%
   ggplot(aes(x = Region, y = mean, color = Region)) + 
   geom_point(position = position_jitter(), size = 3) +
   stat_summary(fun.data = "mean_cl_normal", geom = "pointrange", color = "black") +
-  scale_color_manual(values = c("#CC99CC", "#990066"), labels = c('Svelvik', 'Ullensvang')) +
+  scale_color_manual(values = c("#CC99CC", "#990066"), labels = c('East', 'West')) +
   labs(x = "", y = "", color = "Region", title = "") +
   ylim(-1, 1) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", size = 0.5) +
   theme(panel.background = element_blank(), plot.title = element_text(hjust = 0)) +
-  scale_x_discrete(labels = c("Svelvik" = "Svelvik", "Ullensvang" = "Ullensvang")) +
+  scale_x_discrete(labels = c("Svelvik" = "East", "Ullensvang" = "West")) +
   theme(
     line = element_blank(),
     panel.grid.minor = element_blank(),
@@ -143,6 +142,7 @@ RegionSeedSet <- SeedSetDeficit5 %>%
   stat_summary(fun.data = "mean_cl_normal", geom = "pointrange", color = "black") +
   theme(strip.text.x = element_blank()) +
   scale_color_manual (values =  c("#CC99CC", "#990066"), labels = c('East', 'West')) +
+  scale_x_discrete(labels = c("Svelvik" = "East", "Ullensvang" = "West")) +
   labs(x = "", y = "", title = "") +
   ylim(-1, 1) +
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
@@ -172,7 +172,7 @@ YearSeedSet <- SeedSetDeficit5 %>%
 #ggsave(YearSeedSet, filename = "Figures/YearSeedSet.jpeg", height = 6, width = 3)
 
 FourGraphsSeedSet <- ggarrange(TotalSeedSet, VarietySeedSet, RegionSeedSet, YearSeedSet, nrow = 1, common.legend = TRUE, align = "h", labels = c("a", "b", "c", "d"))
-ggsave(FourGraphsSeedSet, filename = "Figures/Paper1/FourGraphsSeedSet.jpeg", height = 6, width = 11)
+ggsave(FourGraphsSeedSet, filename = "Figures/FourGraphsSeedSet.jpeg", height = 6, width = 11)
 
 
 
@@ -291,8 +291,6 @@ PollDef_ranked <- SeedSetDeficit5 %>%
         panel.background = element_blank()) +
   facet_wrap(~Apple_variety)
 ggsave(PollDef_ranked, filename = "Figures/PollDef_ranked.jpeg", height = 6, width = 10)
-
-
 
 
 
