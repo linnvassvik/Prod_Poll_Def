@@ -1,4 +1,4 @@
-### PLOTS FOR POLLINATION DEFICIT ###
+## FIGURES FOR PAPER
 
 library(ggplot2)
 library(ggpubr)
