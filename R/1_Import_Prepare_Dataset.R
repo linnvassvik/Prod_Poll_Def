@@ -432,7 +432,6 @@ Pollinator_observations_2022_grouped <- Pollinator_observations_2022 %>%
 #Camera observations easter Norway 2023 (Missing for Berle)
 PolliObs_2023 <- read_csv("Data/PolliObs_2023.csv")
 
-
 PolliObs_2023 <- PolliObs_2023 %>% 
   mutate(date_time = dmy_hms(paste(Date, Time)))
 
@@ -476,6 +475,10 @@ PolliObs_2023_Loc <- PolliObs_2023 %>%
   mutate_all(.funs = function(x) ifelse(is.na(x), 0, x))
 
 Photo_numbers <- read_csv("Data/Photo_numbers.csv")
+
+Photo_numbers %>% 
+  group_by(Apple_variety, Photos_number) %>% 
+  summarise(count = n())
 
 Photo_numbers <- Photo_numbers %>% 
   select(-Comment)
