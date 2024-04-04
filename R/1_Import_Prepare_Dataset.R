@@ -1,4 +1,4 @@
-###### APPLE QUALITY DATA FROM POLLINATION EXPERIMENT, HARDANGER AND SVELVIK IN 2022 AND 2023 ######
+###### DATA FOR PRODUCTION AND POLLINATION DEFICIT STUDY ######
 
 library(ggpp)
 library(tidyverse)
@@ -475,10 +475,6 @@ PolliObs_2023_Loc <- PolliObs_2023 %>%
   mutate_all(.funs = function(x) ifelse(is.na(x), 0, x))
 
 Photo_numbers <- read_csv("Data/Photo_numbers.csv")
-
-Photo_numbers %>% 
-  group_by(Apple_variety, Photos_number) %>% 
-  summarise(count = n())
 
 Photo_numbers <- Photo_numbers %>% 
   select(-Comment)
