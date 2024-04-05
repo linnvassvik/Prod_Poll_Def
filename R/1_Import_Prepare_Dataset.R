@@ -410,24 +410,6 @@ PCSeedSetPlot <- plyr::ddply(PCSeedSet, c("Year", "Region", "Apple_variety", "Lo
 ##################################
 
 
-# #Pollinator visits
-# #Manual observations eastern Norway 2022 (S-H-SR Tree 1, 3, 6 and 10 only 1 observation)
-# Pollinator_observations_2022 <- read_excel("Data/Pollinator_observations_2022.xlsx")
-# 
-# Pollinator_observations_2022 <- Pollinator_observations_2022 %>% 
-#   select(-Time_start,-Time_length, -Time_end, -Weather, -Name, -Species, -Comment, -Date, -ID,-Region) %>% 
-#   rename(Solitarybee = Wildbee)
-# 
-# Pollinator_observations_2022_avrg <- Pollinator_observations_2022 %>% 
-#   group_by(Location, Apple_variety) %>% 
-#   summarise_all(list(sum = sum)) %>% 
-#   select(-Tree_sum, -Observation_nbr_sum)
-# 
-# Pollinator_observations_2022_grouped <- Pollinator_observations_2022 %>% 
-#   mutate(Wild_bees = Solitarybee + Bumblebee) %>% 
-#   mutate(Diptera = Hoverfly + Fly) %>% 
-#   mutate(Tree = as.character(Tree))
-
 
 #Camera observations easter Norway 2023 (Missing for Berle)
 PolliObs_2023 <- read_csv("Data/PolliObs_2023.csv")
@@ -670,5 +652,21 @@ Deficit_Observations <- Deficit %>%
 
 
   
-  
+# #Pollinator visits
+# #Manual observations eastern Norway 2022 (S-H-SR Tree 1, 3, 6 and 10 only 1 observation)
+# Pollinator_observations_2022 <- read_excel("Data/Pollinator_observations_2022.xlsx")
+# 
+# Pollinator_observations_2022 <- Pollinator_observations_2022 %>% 
+#   select(-Time_start,-Time_length, -Time_end, -Weather, -Name, -Species, -Comment, -Date, -ID,-Region) %>% 
+#   rename(Solitarybee = Wildbee)
+# 
+# Pollinator_observations_2022_avrg <- Pollinator_observations_2022 %>% 
+#   group_by(Location, Apple_variety) %>% 
+#   summarise_all(list(sum = sum)) %>% 
+#   select(-Tree_sum, -Observation_nbr_sum)
+# 
+# Pollinator_observations_2022_grouped <- Pollinator_observations_2022 %>% 
+#   mutate(Wild_bees = Solitarybee + Bumblebee) %>% 
+#   mutate(Diptera = Hoverfly + Fly) %>% 
+#   mutate(Tree = as.character(Tree)) 
   
