@@ -314,9 +314,10 @@ SBCam <- make_prettyplot(dat = Deficit_Visits,
                          line_type = "solid") +
   scale_color_manual (values =  c("#CC6666", "#CCCC99", "#FF9966")) +
   scale_fill_manual (values =  c("#CC6666", "#CCCC99", "#FF9966")) +
-  labs(x = "Solitary bee/recording", y = "Production deficit", color = "Apple cultivar", fill = "Apple cultivar") +
+  labs(x = "Solitary bee/recording", y = "", color = "Apple cultivar", fill = "Apple cultivar") +
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
-  theme(legend.position = "top")
+  theme(legend.position = "top") +
+  ylim(-1, 1)
 
 
 CameraVisHB <- expand.grid(Apis_AvrgPh = seq(0.0014, 0.0113, length = 100), Apple_variety = c("Aroma", "Discovery", "Summerred"))
@@ -335,9 +336,10 @@ HBCam <- make_prettyplot(dat = Deficit_Visits,
                          line_type = "solid") +
   scale_color_manual (values = c("#666666", "#666666", "#666666")) +
   scale_fill_manual (values = c("#666666", "#666666", "#666666")) +
-  labs(x = "Honeybee/recording", y = "Production deficit", color = "Apple cultivar", fill = "Apple cultivar") +
+  labs(x = "Honeybee/recording", y = "", color = "Apple cultivar", fill = "Apple cultivar") +
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  ylim(-1, 1)
 
 
 CameraVisBB <- expand.grid(Bombus_AvrgPh = seq(0, 0.001027, length = 100), Apple_variety = c("Aroma", "Discovery", "Summerred"))
@@ -357,11 +359,12 @@ BBCam <- make_prettyplot(dat = Deficit_Visits,
   scale_fill_manual (values = c("#666666", "#666666", "#666666")) +
   labs(x = "Bumblebee/recording", y = "Production deficit", color = "Apple cultivar", fill = "Apple cultivar") +
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  ylim(-1, 1)
 
 CamProdDef <- ggarrange(SBCam, BBCam, HBCam, nrow = 3)
 
-ggsave(CamProdDef, filename = "Figures/CamProdDef.jpeg", height = 8, width = 6)
+#ggsave(CamProdDef, filename = "Figures/CamProdDef.jpeg", height = 8, width = 6)
 
 
 #### POLLINATION DEFICIT ##############
@@ -380,9 +383,10 @@ SBPoll <- make_prettyplot(dat = Deficit_Visits,
                           line_type = "solid") +
   scale_color_manual (values =  c("#CC6666", "#CCCC99", "#FF9966")) +
   scale_fill_manual (values =  c("#CC6666", "#CCCC99", "#FF9966")) +
-  labs(x = "Solitary bee/recording", y = "Pollination deficit", color = "Apple cultivar", fill = "Apple cultivar") +
+  labs(x = "Solitary bee/recording", y = "", color = "Apple cultivar", fill = "Apple cultivar") +
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
-  theme(legend.position = "top")
+  theme(legend.position = "none") +
+  ylim(-1, 1)
 
 
 PollVisHB <- expand.grid(Apis_AvrgPh = seq(0.0014, 0.0113, length = 100), Apple_variety = c("Aroma", "Discovery", "Summerred"))
@@ -401,9 +405,10 @@ HBPoll <- make_prettyplot(dat = Deficit_Visits,
                           line_type = "solid") +
   scale_color_manual (values = c("#666666", "#666666", "#666666")) +
   scale_fill_manual (values = c("#666666", "#666666", "#666666")) +
-  labs(x = "Honeybee/recording", y = "Pollination deficit", color = "Apple cultivar", fill = "Apple cultivar") +
+  labs(x = "Honeybee/recording", y = "", color = "Apple cultivar", fill = "Apple cultivar") +
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  ylim(-1, 1)
 
 
 PollVisBB <- expand.grid(Bombus_AvrgPh = seq(0, 0.00102, length = 100), Apple_variety = c("Aroma", "Discovery", "Summerred"), weight = 0)
@@ -423,12 +428,15 @@ BBPoll <- make_prettyplot(dat = Deficit_Visits,
   scale_fill_manual (values = c("#666666", "#666666", "#666666")) +
   labs(x = "Bumblebee/recording", y = "Pollination deficit", color = "Apple cultivar", fill = "Apple cultivar") +
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  ylim(-1, 1)
 
 CamPollDef <- ggarrange(SBPoll, BBPoll, HBPoll, nrow = 3)
 
-ggsave(CamPollDef, filename = "Figures/CamPollDef.jpeg", height = 8, width = 6)
+#ggsave(CamPollDef, filename = "Figures/CamPollDef.jpeg", height = 8, width = 6)
 
+CamComb <- ggarrange(CamProdDef, CamPollDef, nrow = 1, labels = c("a", "b"))
+ggsave(CamComb, filename = "Figures/CamComb.jpeg", height = 8, width = 10)
 
 
 
