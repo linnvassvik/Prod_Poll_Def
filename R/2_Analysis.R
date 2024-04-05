@@ -134,7 +134,7 @@ Model_ProdDefVisit1 <- lme(ProdDef ~ Apple_variety + Apis_AvrgPh, random = ~1|Lo
 Model_ProdDefVisit2 <- lme(ProdDef ~ Apple_variety + SolitaryBee_AvrgPh, random = ~1|Location, data = Deficit_Visits)
 Model_ProdDefVisit3 <- lme(ProdDef ~ Apple_variety + Bombus_AvrgPh, random = ~1|Location, data = Deficit_Visits)
 
-summary(Model_ProdDefVisit3)
+summary(Model_ProdDefVisit1)
 
 
 # anova(Model_ProdDefVisit1) #model selection based on anova and drop not significant values
