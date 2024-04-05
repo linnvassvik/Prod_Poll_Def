@@ -15,5 +15,8 @@ make_prettyplot <- function(dat, xaxis, yaxis, Newdata, prediction, ColorVariabl
     geom_point(alpha = 0.5) +
     geom_line(Newdata, mapping = aes(x = {{xaxis}}, y = {{prediction}}, color = {{ColorVariable}}, shape = {{shape}}), linetype = line_type) +
     geom_ribbon(Newdata, mapping = aes(y= {{prediction}}, ymin = {{prediction}} - cmult * {{SE}}, ymax = {{prediction}} + cmult * {{SE}}, fill = {{ColorVariable}}), alpha = 0.2) +
-    theme_minimal()
+    theme(line = element_blank(),
+          panel.grid.minor = element_blank(),
+          panel.grid.major = element_blank(),
+          panel.background = element_blank())
 }
