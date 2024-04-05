@@ -410,23 +410,23 @@ PCSeedSetPlot <- plyr::ddply(PCSeedSet, c("Year", "Region", "Apple_variety", "Lo
 ##################################
 
 
-#Pollinator visits
-#Manual observations eastern Norway 2022 (S-H-SR Tree 1, 3, 6 and 10 only 1 observation)
-Pollinator_observations_2022 <- read_excel("Data/Pollinator_observations_2022.xlsx")
-
-Pollinator_observations_2022 <- Pollinator_observations_2022 %>% 
-  select(-Time_start,-Time_length, -Time_end, -Weather, -Name, -Species, -Comment, -Date, -ID,-Region) %>% 
-  rename(Solitarybee = Wildbee)
-
-Pollinator_observations_2022_avrg <- Pollinator_observations_2022 %>% 
-  group_by(Location, Apple_variety) %>% 
-  summarise_all(list(sum = sum)) %>% 
-  select(-Tree_sum, -Observation_nbr_sum)
-
-Pollinator_observations_2022_grouped <- Pollinator_observations_2022 %>% 
-  mutate(Wild_bees = Solitarybee + Bumblebee) %>% 
-  mutate(Diptera = Hoverfly + Fly) %>% 
-  mutate(Tree = as.character(Tree))
+# #Pollinator visits
+# #Manual observations eastern Norway 2022 (S-H-SR Tree 1, 3, 6 and 10 only 1 observation)
+# Pollinator_observations_2022 <- read_excel("Data/Pollinator_observations_2022.xlsx")
+# 
+# Pollinator_observations_2022 <- Pollinator_observations_2022 %>% 
+#   select(-Time_start,-Time_length, -Time_end, -Weather, -Name, -Species, -Comment, -Date, -ID,-Region) %>% 
+#   rename(Solitarybee = Wildbee)
+# 
+# Pollinator_observations_2022_avrg <- Pollinator_observations_2022 %>% 
+#   group_by(Location, Apple_variety) %>% 
+#   summarise_all(list(sum = sum)) %>% 
+#   select(-Tree_sum, -Observation_nbr_sum)
+# 
+# Pollinator_observations_2022_grouped <- Pollinator_observations_2022 %>% 
+#   mutate(Wild_bees = Solitarybee + Bumblebee) %>% 
+#   mutate(Diptera = Hoverfly + Fly) %>% 
+#   mutate(Tree = as.character(Tree))
 
 
 #Camera observations easter Norway 2023 (Missing for Berle)
@@ -506,7 +506,7 @@ PolliObs_Photo_Visits2 <- PolliObs_Photo_Visits %>%
 
 #Calculate mean for each Variety and location 
 
-write_xlsx(PolliObs_Photo_Visits2, "Excel\\PolliObs_Photo_Visits2.xlsx") 
+#write_xlsx(PolliObs_Photo_Visits2, "Excel\\PolliObs_Photo_Visits2.xlsx") 
 
 PolliObs_Photo_Observations <- PolliObs_Photo_Observations %>% 
   mutate(Apis_AvrgPh = Apis/Photos_number) %>% 
@@ -518,7 +518,7 @@ PolliObs_Photo_Observations <- PolliObs_Photo_Observations %>%
 PolliObs_Photo_Observations2 <- PolliObs_Photo_Observations %>%
   select(-Apis, -Diptera, -SolitaryBee, -Bombus, -Other, -Lepidoptera, -Unknown_bee, -On_flower, -Avrg_Visit_Photo_percent)
 
-write_xlsx(PolliObs_Photo_Observations2, "Excel\\PolliObs_Photo_Observations2.xlsx") 
+#write_xlsx(PolliObs_Photo_Observations2, "Excel\\PolliObs_Photo_Observations2.xlsx") 
 
 PolliObs_Photo_Visits2_Avrg <- read_excel("Data/PolliObs_Photo_Visits2_Avrg.xlsx")
 PolliObs_Photo_Observations2_Avrg <- read_excel("Data/PolliObs_Photo_Observations2_Avrg.xlsx")
