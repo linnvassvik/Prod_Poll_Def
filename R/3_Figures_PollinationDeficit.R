@@ -316,7 +316,7 @@ SBCam <- make_prettyplot(dat = Deficit_Visits,
   scale_fill_manual (values =  c("#CC6666", "#CCCC99", "#FF9966")) +
   labs(x = "Solitary bee/recording", y = "", color = "Apple cultivar", fill = "Apple cultivar") +
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
-  theme(legend.position = "top") +
+  theme(legend.position = "none") +
   ylim(-1, 1)
 
 
@@ -385,7 +385,7 @@ SBPoll <- make_prettyplot(dat = Deficit_Visits,
   scale_fill_manual (values =  c("#CC6666", "#CCCC99", "#FF9966")) +
   labs(x = "Solitary bee/recording", y = "", color = "Apple cultivar", fill = "Apple cultivar") +
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
-  theme(legend.position = "none") +
+  theme(legend.position = "top") +
   ylim(-1, 1)
 
 
@@ -435,7 +435,7 @@ CamPollDef <- ggarrange(SBPoll, BBPoll, HBPoll, nrow = 3)
 
 #ggsave(CamPollDef, filename = "Figures/CamPollDef.jpeg", height = 8, width = 6)
 
-CamComb <- ggarrange(CamProdDef, CamPollDef, nrow = 1, labels = c("a", "b"))
+CamComb <- ggarrange(CamPollDef, CamProdDef, nrow = 1, labels = c("a", "b"))
 ggsave(CamComb, filename = "Figures/CamComb.jpeg", height = 8, width = 10)
 
 
