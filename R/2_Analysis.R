@@ -10,67 +10,75 @@ library(emmeans)
 ######## PRODUCTION DEFICIT (FRUITSET * WEIGHT) #############
 
 #Analysis for Cultivar, Region and Year separately
-Model_Production1 <- lme(DeficitFruitSet ~ Apple_variety, random = ~1|Tree/Location, data = PollinationDeficit2)
-Model_Production2 <- lme(DeficitFruitSet ~ Region, random = ~1|Tree/Location, data = PollinationDeficit2)
-Model_Production3 <- lme(DeficitFruitSet ~ Year, random = ~1|Tree/Location, data = PollinationDeficit2) 
- 
+# Model_Production1 <- lme(DeficitFruitSet ~ Apple_variety, random = ~1|Tree/Location, data = PollinationDeficit2)
+# Model_Production2 <- lme(DeficitFruitSet ~ Region, random = ~1|Tree/Location, data = PollinationDeficit2)
+# Model_Production3 <- lme(DeficitFruitSet ~ Year, random = ~1|Tree/Location, data = PollinationDeficit2) 
+
+Model_Production6 <- lme(DeficitFruitSet ~ Apple_variety + Region + Year, random = ~1|Tree/Location, data = PollinationDeficit2) 
+
+summary(Model_Production6)
 #Including Cultivar, Location and Year, with analysis separate for the two regions
-PollinationDeficit2_East <- PollinationDeficit2 %>% 
-  filter(Region == 'Svelvik')
-PollinationDeficit2_West <- PollinationDeficit2 %>% 
-  filter(Region == 'Ullensvang')
+# PollinationDeficit2_East <- PollinationDeficit2 %>% 
+#   filter(Region == 'Svelvik')
+# PollinationDeficit2_West <- PollinationDeficit2 %>% 
+#   filter(Region == 'Ullensvang')
+# 
+# 
+# Model_Production4 <- lme(DeficitFruitSet ~ Apple_variety * Location * Year, random = ~1|Tree/Location, data = PollinationDeficit2_East)
+# Model_Production5 <- lme(DeficitFruitSet ~ Apple_variety * Location * Year, random = ~1|Tree/Location, data = PollinationDeficit2_West)
 
-
-Model_Production4 <- lme(DeficitFruitSet ~ Apple_variety * Location * Year, random = ~1|Tree/Location, data = PollinationDeficit2_East)
-Model_Production5 <- lme(DeficitFruitSet ~ Apple_variety * Location * Year, random = ~1|Tree/Location, data = PollinationDeficit2_West)
-
+Model_Production7 <- lme(DeficitFruitSet ~ Apple_variety * Location * Year, random = ~1|Tree/Location, data = PollinationDeficit2)
+summary(Model_Production7)
 
 #summary(Model_Production4)
-
-
-#Get significance
-#Cultivar
-Var_Prod = emmeans(Model_Production1, spec = ~ Apple_variety)
-Var_Prod_tukey = contrast(Var_Prod, method = 'pairwise')
-Var_Proddf <- summary(Var_Prod_tukey)
-#write_xlsx(Var_Proddf, "Excel\\emmeans_Var_Prod.xlsx")
-
-#Region
-Reg_Prod = emmeans(Model_Production2, spec = ~ Region)
-Reg_Prod_tukey = contrast(Reg_Prod, method = 'pairwise')
-Reg_Proddf <- summary(Reg_Prod_tukey)
-#write_xlsx(Reg_Proddf, "Excel\\emmeans_Reg_Prod.xlsx")
-
-#Year
-Year_Prod = emmeans(Model_Production3, spec = ~ Year)
-Year_Prod_tukey = contrast(Year_Prod, method = 'pairwise')
-Year_Proddf <- summary(Year_Prod_tukey)
-#write_xlsx(Year_Proddf, "Excel\\emmeans_Year_Prod.xlsx")
-
-
-
-
-#Location * Apple variety * Year in East
-LocVarYear_Prod = emmeans(Model_Production4, spec = ~ Location * Apple_variety * Year)
-LocVarYear_Prod_tukey = contrast(LocVarYear_Prod, method = 'pairwise')
-LocVarYear_Proddf <- summary(LocVarYear_Prod_tukey)
-#write_xlsx(LocVarYear_Proddf, "Excel\\emmeans_LocVarYear_Prod_East.xlsx")
-
-#Location * Apple variety * Year in West
-LocVarYear_Prod = emmeans(Model_Production5, spec = ~ Location * Apple_variety * Year)
-LocVarYear_Prod_tukey = contrast(LocVarYear_Prod, method = 'pairwise')
-LocVarYear_Proddf <- summary(LocVarYear_Prod_tukey)
-#write_xlsx(LocVarYear_Proddf, "Excel\\emmeans_LocVarYear_Prod_West.xlsx")
-
+# 
+# 
+# #Get significance
+# #Cultivar
+# Var_Prod = emmeans(Model_Production1, spec = ~ Apple_variety)
+# Var_Prod_tukey = contrast(Var_Prod, method = 'pairwise')
+# Var_Proddf <- summary(Var_Prod_tukey)
+# #write_xlsx(Var_Proddf, "Excel\\emmeans_Var_Prod.xlsx")
+# 
+# #Region
+# Reg_Prod = emmeans(Model_Production2, spec = ~ Region)
+# Reg_Prod_tukey = contrast(Reg_Prod, method = 'pairwise')
+# Reg_Proddf <- summary(Reg_Prod_tukey)
+# #write_xlsx(Reg_Proddf, "Excel\\emmeans_Reg_Prod.xlsx")
+# 
+# #Year
+# Year_Prod = emmeans(Model_Production3, spec = ~ Year)
+# Year_Prod_tukey = contrast(Year_Prod, method = 'pairwise')
+# Year_Proddf <- summary(Year_Prod_tukey)
+# #write_xlsx(Year_Proddf, "Excel\\emmeans_Year_Prod.xlsx")
+# 
+# 
+# 
+# 
+# #Location * Apple variety * Year in East
+# LocVarYear_Prod = emmeans(Model_Production4, spec = ~ Location * Apple_variety * Year)
+# LocVarYear_Prod_tukey = contrast(LocVarYear_Prod, method = 'pairwise')
+# LocVarYear_Proddf <- summary(LocVarYear_Prod_tukey)
+# #write_xlsx(LocVarYear_Proddf, "Excel\\emmeans_LocVarYear_Prod_East.xlsx")
+# 
+# #Location * Apple variety * Year in West
+# LocVarYear_Prod = emmeans(Model_Production5, spec = ~ Location * Apple_variety * Year)
+# LocVarYear_Prod_tukey = contrast(LocVarYear_Prod, method = 'pairwise')
+# LocVarYear_Proddf <- summary(LocVarYear_Prod_tukey)
+# #write_xlsx(LocVarYear_Proddf, "Excel\\emmeans_LocVarYear_Prod_West.xlsx")
+# 
 
 
 ####################################################
 ########### POLLINATION DEFICIT (SEED SET) #########
 
 #Analysis for Cultivar, Region and Year separately
-Model_Pollination1 <- lme(DeficitSeeds ~ Apple_variety, random = ~1|Tree/Location, data = SeedSetDeficit3)
-Model_Pollination2 <- lme(DeficitSeeds ~ Region, random = ~1|Tree/Location, data = SeedSetDeficit3)
-Model_Pollination3 <- lme(DeficitSeeds ~ Year, random = ~1|Tree/Location, data = SeedSetDeficit3) 
+# Model_Pollination1 <- lme(DeficitSeeds ~ Apple_variety, random = ~1|Tree/Location, data = SeedSetDeficit3)
+# Model_Pollination2 <- lme(DeficitSeeds ~ Region, random = ~1|Tree/Location, data = SeedSetDeficit3)
+# Model_Pollination3 <- lme(DeficitSeeds ~ Year, random = ~1|Tree/Location, data = SeedSetDeficit3) 
+
+Model_Pollination6 <- lme(DeficitSeeds ~ Apple_variety + Region + Year, random = ~1|Tree/Location, data = SeedSetDeficit3)
+summary(Model_Pollination6)
 
 #Including Cultivar, Location and Year, with analysis separate for the two regions
 SeedSetDeficit3_East <- SeedSetDeficit3 %>% 
@@ -83,40 +91,40 @@ Model_Pollination5 <- lme(DeficitSeeds ~ Apple_variety * Location * Year, random
 
 
 
-#Get significance
-#Cultivar
-Var_Poll = emmeans(Model_Pollination1, spec = ~ Apple_variety)
-Var_Poll_tukey = contrast(Var_Poll, method = 'pairwise')
-Var_Polldf <- summary(Var_Poll_tukey)
-#write_xlsx(Var_Polldf, "Excel\\emmeans_Var_Poll.xlsx")
-
-#Region
-Reg_Poll = emmeans(Model_Pollination2, spec = ~ Region)
-Reg_Poll_tukey = contrast(Reg_Poll, method = 'pairwise')
-Reg_Polldf <- summary(Reg_Poll_tukey)
-#write_xlsx(Reg_Prolldf, "Excel\\emmeans_Reg_Poll.xlsx")
-
-#Year
-Year_Poll = emmeans(Model_Pollination3, spec = ~ Year)
-Year_Poll_tukey = contrast(Year_Poll, method = 'pairwise')
-Year_Polldf <- summary(Year_Poll_tukey)
-#write_xlsx(Year_Polldf, "Excel\\emmeans_Year_Poll.xlsx")
-
-
-
-
-#Location * Apple variety * Year in East
-LocVarYear_Poll = emmeans(Model_Pollination4, spec = ~ Location * Apple_variety * Year)
-LocVarYear_Poll_tukey = contrast(LocVarYear_Poll, method = 'pairwise')
-LocVarYear_Polldf <- summary(LocVarYear_Poll_tukey)
-#write_xlsx(LocVarYear_Polldf, "Excel\\emmeans_LocVarYear_Poll_East.xlsx")
-
-#Location * Apple variety * Year in West
-LocVarYear_Poll = emmeans(Model_Pollination5, spec = ~ Location * Apple_variety * Year)
-LocVarYear_Poll_tukey = contrast(LocVarYear_Poll, method = 'pairwise')
-LocVarYear_Polldf <- summary(LocVarYear_Poll_tukey)
-#write_xlsx(LocVarYear_Polldf, "Excel\\emmeans_LocVarYear_Poll_West.xlsx")
-
+# #Get significance
+# #Cultivar
+# Var_Poll = emmeans(Model_Pollination1, spec = ~ Apple_variety)
+# Var_Poll_tukey = contrast(Var_Poll, method = 'pairwise')
+# Var_Polldf <- summary(Var_Poll_tukey)
+# #write_xlsx(Var_Polldf, "Excel\\emmeans_Var_Poll.xlsx")
+# 
+# #Region
+# Reg_Poll = emmeans(Model_Pollination2, spec = ~ Region)
+# Reg_Poll_tukey = contrast(Reg_Poll, method = 'pairwise')
+# Reg_Polldf <- summary(Reg_Poll_tukey)
+# #write_xlsx(Reg_Prolldf, "Excel\\emmeans_Reg_Poll.xlsx")
+# 
+# #Year
+# Year_Poll = emmeans(Model_Pollination3, spec = ~ Year)
+# Year_Poll_tukey = contrast(Year_Poll, method = 'pairwise')
+# Year_Polldf <- summary(Year_Poll_tukey)
+# #write_xlsx(Year_Polldf, "Excel\\emmeans_Year_Poll.xlsx")
+# 
+# 
+# 
+# 
+# #Location * Apple variety * Year in East
+# LocVarYear_Poll = emmeans(Model_Pollination4, spec = ~ Location * Apple_variety * Year)
+# LocVarYear_Poll_tukey = contrast(LocVarYear_Poll, method = 'pairwise')
+# LocVarYear_Polldf <- summary(LocVarYear_Poll_tukey)
+# #write_xlsx(LocVarYear_Polldf, "Excel\\emmeans_LocVarYear_Poll_East.xlsx")
+# 
+# #Location * Apple variety * Year in West
+# LocVarYear_Poll = emmeans(Model_Pollination5, spec = ~ Location * Apple_variety * Year)
+# LocVarYear_Poll_tukey = contrast(LocVarYear_Poll, method = 'pairwise')
+# LocVarYear_Polldf <- summary(LocVarYear_Poll_tukey)
+# #write_xlsx(LocVarYear_Polldf, "Excel\\emmeans_LocVarYear_Poll_West.xlsx")
+# 
 
 
 
@@ -133,6 +141,8 @@ LocVarYear_Polldf <- summary(LocVarYear_Poll_tukey)
 Model_ProdDefVisit1 <- lme(ProdDef ~ Apple_variety + Apis_AvrgPh, random = ~1|Location, data = Deficit_Visits)
 Model_ProdDefVisit2 <- lme(ProdDef ~ Apple_variety + SolitaryBee_AvrgPh, random = ~1|Location, data = Deficit_Visits)
 Model_ProdDefVisit3 <- lme(ProdDef ~ Apple_variety + Bombus_AvrgPh, random = ~1|Location, data = Deficit_Visits)
+
+# Model_ProdDefVisit4 <- lme(ProdDef ~ Apple_variety * (SolitaryBee_AvrgPh + Bombus_AvrgPh + Apis_AvrgPh), random = ~1|Location, data = Deficit_Visits)
 
 summary(Model_ProdDefVisit1)
 
