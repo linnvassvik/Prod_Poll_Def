@@ -323,7 +323,7 @@ SBCam <- make_prettyplot(dat = Deficit_Visits,
 CameraVisHB <- expand.grid(Apis_AvrgPh = seq(0.0014, 0.0113, length = 100), Apple_variety = c("Aroma", "Discovery", "Summerred"))
 
 CamVisHB_22 <- make_prediction(CameraVisHB, Model_ProdDefVisit1) %>% 
-  filter(Apple_variety == 'Discovery') #filtered on the middle variety to only get one line in plot
+  filter(Apple_variety == 'Aroma') #filtered on the middle variety to only get one line in plot
 
 
 HBCam <- make_prettyplot(dat = Deficit_Visits,
@@ -347,6 +347,7 @@ CameraVisBB <- expand.grid(Bombus_AvrgPh = seq(0, 0.001027, length = 100), Apple
 CamVisBB_22 <- make_prediction(CameraVisBB, Model_ProdDefVisit3) %>% 
   filter(Apple_variety == 'Aroma') #filtered on the middle variety to only get one line in plot
 
+
 BBCam <- make_prettyplot(dat = Deficit_Visits,
                          Newdata = CamVisBB_22, 
                          xaxis = Bombus_AvrgPh, 
@@ -361,6 +362,7 @@ BBCam <- make_prettyplot(dat = Deficit_Visits,
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
   theme(legend.position = "none") +
   ylim(-1, 1)
+
 
 CamProdDef <- ggarrange(SBCam, BBCam, HBCam, nrow = 3)
 
@@ -392,7 +394,7 @@ SBPoll <- make_prettyplot(dat = Deficit_Visits,
 PollVisHB <- expand.grid(Apis_AvrgPh = seq(0.0014, 0.0113, length = 100), Apple_variety = c("Aroma", "Discovery", "Summerred"))
 
 PollVisHB_22 <- make_prediction(PollVisHB, Model_PollDefVisit1) %>% 
-  filter(Apple_variety == 'Discovery') #filtered on the middle variety to only get one line in plot
+  filter(Apple_variety == 'Aroma') #filtered on the middle variety to only get one line in plot
 
 
 HBPoll <- make_prettyplot(dat = Deficit_Visits,
@@ -414,7 +416,7 @@ HBPoll <- make_prettyplot(dat = Deficit_Visits,
 PollVisBB <- expand.grid(Bombus_AvrgPh = seq(0, 0.00102, length = 100), Apple_variety = c("Aroma", "Discovery", "Summerred"), weight = 0)
 
 PollVisBB_22 <- make_prediction(PollVisBB, Model_PollDefVisit3) %>% 
-  filter(Apple_variety == 'Discovery') #filtered on the middle variety to only get one line in plot
+  filter(Apple_variety == 'Aroma') #filtered on the middle variety to only get one line in plot
 
 BBPoll <- make_prettyplot(dat = Deficit_Visits,
                           Newdata = PollVisBB_22, 
