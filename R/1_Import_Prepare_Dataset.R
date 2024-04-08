@@ -411,7 +411,7 @@ PCSeedSetPlot <- plyr::ddply(PCSeedSet, c("Year", "Region", "Apple_variety", "Lo
 
 
 
-#Camera observations easter Norway 2023 (Missing for Berle)
+#Camera observations easter Norway 2023
 PolliObs_2023 <- read_csv("Data/PolliObs_2023.csv")
 
 PolliObs_2023 <- PolliObs_2023 %>% 
