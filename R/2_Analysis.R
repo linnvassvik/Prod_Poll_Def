@@ -142,7 +142,7 @@ Model_ProdDefVisit1 <- lme(ProdDef ~ Apple_variety + Apis_AvrgPh, random = ~1|Lo
 Model_ProdDefVisit2 <- lme(ProdDef ~ Apple_variety + SolitaryBee_AvrgPh, random = ~1|Location, data = Deficit_Visits)
 Model_ProdDefVisit3 <- lme(ProdDef ~ Apple_variety + Bombus_AvrgPh, random = ~1|Location, data = Deficit_Visits)
 
-# Model_ProdDefVisit4 <- lme(ProdDef ~ Apple_variety * (SolitaryBee_AvrgPh + Bombus_AvrgPh + Apis_AvrgPh), random = ~1|Location, data = Deficit_Visits)
+Model_ProdDefVisit4 <- lme(ProdDef ~ Apple_variety + SolitaryBee_AvrgPh + Bombus_AvrgPh + Apis_AvrgPh, random = ~1|Location, data = Deficit_Visits)
 
 summary(Model_ProdDefVisit1)
 
@@ -159,6 +159,10 @@ Model_PollDefVisit1 <- lme(PollDef ~ Apple_variety + Apis_AvrgPh, random = ~1|Lo
 Model_PollDefVisit2 <- lme(PollDef ~ Apple_variety + SolitaryBee_AvrgPh, random = ~1|Location, data = Deficit_Visits)
 Model_PollDefVisit3 <- lme(PollDef ~ Apple_variety + Bombus_AvrgPh, random = ~1|Location, data = Deficit_Visits)
 
+Model_PollDefVisit4 <- lme(PollDef ~ Apple_variety + SolitaryBee_AvrgPh + Bombus_AvrgPh + Apis_AvrgPh, random = ~1|Location, data = Deficit_Visits)
+Model_PollDefVisit5 <- lme(PollDef ~ Apple_variety + SolitaryBee_AvrgPh + Apis_AvrgPh, random = ~1|Location, data = Deficit_Visits)
+
+AIC(Model_PollDefVisit4, Model_PollDefVisit5, Model_PollDefVisit2, Model_PollDefVisit1, Model_PollDefVisit3)
 
 summary(Model_PollDefVisit1)
 
