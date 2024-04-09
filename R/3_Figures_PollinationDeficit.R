@@ -182,11 +182,12 @@ ggsave(FourGraphsSeedSet, filename = "Figures/FourGraphsSeedSet.jpeg", height = 
 
 ProdDef_ranked1 <- PollinationDeficit4 %>% 
   filter(Apple_variety == 'Aroma') %>% 
-  ggplot(aes(x = reorder(Location, mean), y = mean, color = as.character(Year))) +
+  ggplot(aes(x = reorder(Location, mean), y = mean, color = as.character(Year), shape = Region)) +
   geom_pointrange(aes(ymin = mean - ConfInterval, ymax = mean + ConfInterval), 
                   position = position_dodge(0.4)) +
   scale_color_manual (values =  c("#99CCFF", "#333399")) +
-  labs(x = "", y = "Production deficit", color = "Year") +
+  labs(x = "", y = "Production deficit", color = "Year", shape = "Region") +
+  scale_shape_discrete(labels = c("East", "West")) +
   ylim(-1, 1) +
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
   theme(line = element_blank(),
@@ -196,11 +197,12 @@ ProdDef_ranked1 <- PollinationDeficit4 %>%
 
 ProdDef_ranked2 <- PollinationDeficit4 %>% 
   filter(Apple_variety == 'Discovery') %>% 
-  ggplot(aes(x = reorder(Location, mean), y = mean, color = as.character(Year))) +
+  ggplot(aes(x = reorder(Location, mean), y = mean, color = as.character(Year), shape = Region)) +
   geom_pointrange(aes(ymin = mean - ConfInterval, ymax = mean + ConfInterval), 
                   position = position_dodge(0.4)) +
   scale_color_manual (values =  c("#99CCFF", "#333399")) +
-  labs(x = "", y = "", color = "Year") +
+  labs(x = "", y = "", color = "Year", shape = "Region") +
+  scale_shape_discrete(labels = c("East", "West")) +
   ylim(-1, 1) +
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
   theme(line = element_blank(),
@@ -210,11 +212,12 @@ ProdDef_ranked2 <- PollinationDeficit4 %>%
 
 ProdDef_ranked3 <- PollinationDeficit4 %>% 
   filter(Apple_variety == 'Summerred') %>% 
-  ggplot(aes(x = reorder(Location, mean), y = mean, color = as.character(Year))) +
+  ggplot(aes(x = reorder(Location, mean), y = mean, color = as.character(Year), shape = Region)) +
   geom_pointrange(aes(ymin = mean - ConfInterval, ymax = mean + ConfInterval), 
                   position = position_dodge(0.4)) +
   scale_color_manual (values =  c("#99CCFF", "#333399")) +
-  labs(x = "", y = "", color = "Year") +
+  labs(x = "", y = "", color = "Year", shape = "Region") +
+  scale_shape_discrete(labels = c("East", "West")) +
   ylim(-1, 1) +
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
   theme(line = element_blank(),
@@ -231,11 +234,12 @@ ggsave(ProdDef_Loc, filename = "Figures/ProdDef_Loc.jpeg", height = 6, width = 1
 
 PollDef_ranked1 <- SeedSetDeficit5 %>% 
   filter(Apple_variety == 'Aroma') %>% 
-  ggplot(aes(x = reorder(Location, mean), y = mean, color = as.character(Year))) +
+  ggplot(aes(x = reorder(Location, mean), y = mean, color = as.character(Year), shape = Region)) +
   geom_pointrange(aes(ymin = mean - ConfInterval, ymax = mean + ConfInterval), 
                   position = position_dodge(0.4)) +
   scale_color_manual (values =  c("#99CCFF", "#333399")) +
-  labs(x = "", y = "Production deficit", color = "Year") +
+  labs(x = "", y = "Pollination deficit", color = "Year", shape = "Region") +
+  scale_shape_discrete(labels = c("East", "West")) +
   ylim(-1, 1) +
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
   theme(line = element_blank(),
@@ -245,11 +249,12 @@ PollDef_ranked1 <- SeedSetDeficit5 %>%
 
 PollDef_ranked2 <- SeedSetDeficit5 %>% 
   filter(Apple_variety == 'Discovery') %>% 
-  ggplot(aes(x = reorder(Location, mean), y = mean, color = as.character(Year))) +
+  ggplot(aes(x = reorder(Location, mean), y = mean, color = as.character(Year), shape = Region)) +
   geom_pointrange(aes(ymin = mean - ConfInterval, ymax = mean + ConfInterval), 
                   position = position_dodge(0.4)) +
   scale_color_manual (values =  c("#99CCFF", "#333399")) +
-  labs(x = "", y = "", color = "Year") +
+  labs(x = "", y = "", color = "Year", shape = "Region") +
+  scale_shape_discrete(labels = c("East", "West")) +
   ylim(-1, 1) +
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
   theme(line = element_blank(),
@@ -259,11 +264,12 @@ PollDef_ranked2 <- SeedSetDeficit5 %>%
 
 PollDef_ranked3 <- SeedSetDeficit5 %>% 
   filter(Apple_variety == 'Summerred') %>% 
-  ggplot(aes(x = reorder(Location, mean), y = mean, color = as.character(Year))) +
+  ggplot(aes(x = reorder(Location, mean), y = mean, color = as.character(Year), shape = Region)) +
   geom_pointrange(aes(ymin = mean - ConfInterval, ymax = mean + ConfInterval), 
                   position = position_dodge(0.4)) +
   scale_color_manual (values =  c("#99CCFF", "#333399")) +
-  labs(x = "", y = "", color = "Year") +
+  labs(x = "", y = "", color = "Year", shape = "Region") +
+  scale_shape_discrete(labels = c("East", "West")) +
   ylim(-1, 1) +
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
   theme(line = element_blank(),
