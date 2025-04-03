@@ -320,16 +320,16 @@ SBCam <- make_prettyplot(dat = Deficit_Visits,
                          line_type = "solid") +
   scale_color_manual (values =  c("#CC6666", "#CCCC99", "#FF9966")) +
   scale_fill_manual (values =  c("#CC6666", "#CCCC99", "#FF9966")) +
-  labs(x = "Solitary bee/recording", y = "", color = "Apple cultivar", fill = "Apple cultivar") +
+  labs(x = "Solitary bee/recording", y = "Production deficit", color = "Apple cultivar", fill = "Apple cultivar") +
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
-  theme(legend.position = "none") +
+  theme(legend.position = "top") +
   ylim(-1, 1)
 
 
 CameraVisHB <- expand.grid(Apis_AvrgPh = seq(0.0014, 0.0113, length = 100), Apple_variety = c("Aroma", "Discovery", "Summerred"))
 
-CamVisHB_22 <- make_prediction(CameraVisHB, Model_ProdDefVisit1) %>% 
-  filter(Apple_variety == 'Aroma') #filtered on the middle variety to only get one line in plot
+CamVisHB_22 <- make_prediction(CameraVisHB, Model_ProdDefVisit1) #%>% 
+  filter(Apple_variety == c('Aroma')) #filtered on the middle variety to only get one line in plot
 
 
 HBCam <- make_prettyplot(dat = Deficit_Visits,
@@ -340,9 +340,9 @@ HBCam <- make_prettyplot(dat = Deficit_Visits,
                          ColorVariable = Apple_variety, 
                          SE = SE,
                          line_type = "solid") +
-  scale_color_manual (values = c("#666666", "#666666", "#666666")) +
-  scale_fill_manual (values = c("#666666", "#666666", "#666666")) +
-  labs(x = "Honeybee/recording", y = "", color = "Apple cultivar", fill = "Apple cultivar") +
+  scale_color_manual (values =  c("#CC6666", "#CCCC99", "#FF9966")) +
+  scale_fill_manual (values =  c("#CC6666", "#CCCC99", "#FF9966")) +
+  labs(x = "Honeybee/recording", y = "Production deficit", color = "Apple cultivar", fill = "Apple cultivar") +
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
   theme(legend.position = "none") +
   ylim(-1, 1)
@@ -350,7 +350,7 @@ HBCam <- make_prettyplot(dat = Deficit_Visits,
 
 CameraVisBB <- expand.grid(Bombus_AvrgPh = seq(0, 0.001027, length = 100), Apple_variety = c("Aroma", "Discovery", "Summerred"))
 
-CamVisBB_22 <- make_prediction(CameraVisBB, Model_ProdDefVisit3) %>% 
+CamVisBB_22 <- make_prediction(CameraVisBB, Model_ProdDefVisit3) #%>% 
   filter(Apple_variety == 'Aroma') #filtered on the middle variety to only get one line in plot
 
 
@@ -362,15 +362,15 @@ BBCam <- make_prettyplot(dat = Deficit_Visits,
                          ColorVariable = Apple_variety, 
                          SE = SE,
                          line_type = "solid") +
-  scale_color_manual (values = c("#666666", "#666666", "#666666")) +
-  scale_fill_manual (values = c("#666666", "#666666", "#666666")) +
+  scale_color_manual (values =  c("#CC6666", "#CCCC99", "#FF9966")) +
+  scale_fill_manual (values =  c("#CC6666", "#CCCC99", "#FF9966")) +
   labs(x = "Bumblebee/recording", y = "Production deficit", color = "Apple cultivar", fill = "Apple cultivar") +
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
   theme(legend.position = "none") +
   ylim(-1, 1)
 
 
-CamProdDef <- ggarrange(SBCam, BBCam, HBCam, nrow = 3)
+
 
 #ggsave(CamProdDef, filename = "Figures/CamProdDef.jpeg", height = 8, width = 6)
 
@@ -391,7 +391,7 @@ SBPoll <- make_prettyplot(dat = Deficit_Visits,
                           line_type = "solid") +
   scale_color_manual (values =  c("#CC6666", "#CCCC99", "#FF9966")) +
   scale_fill_manual (values =  c("#CC6666", "#CCCC99", "#FF9966")) +
-  labs(x = "Solitary bee/recording", y = "", color = "Apple cultivar", fill = "Apple cultivar") +
+  labs(x = "Solitary bee/recording", y = "Pollination deficit", color = "Apple cultivar", fill = "Apple cultivar") +
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
   theme(legend.position = "top") +
   ylim(-1, 1)
@@ -399,9 +399,7 @@ SBPoll <- make_prettyplot(dat = Deficit_Visits,
 
 PollVisHB <- expand.grid(Apis_AvrgPh = seq(0.0014, 0.0113, length = 100), Apple_variety = c("Aroma", "Discovery", "Summerred"))
 
-PollVisHB_22 <- make_prediction(PollVisHB, Model_PollDefVisit1) %>% 
-  filter(Apple_variety == 'Aroma') #filtered on the middle variety to only get one line in plot
-
+PollVisHB_22 <- make_prediction(PollVisHB, Model_PollDefVisit1) 
 
 HBPoll <- make_prettyplot(dat = Deficit_Visits,
                           Newdata = PollVisHB_22, 
@@ -411,9 +409,9 @@ HBPoll <- make_prettyplot(dat = Deficit_Visits,
                           ColorVariable = Apple_variety, 
                           SE = SE,
                           line_type = "solid") +
-  scale_color_manual (values = c("#666666", "#666666", "#666666")) +
-  scale_fill_manual (values = c("#666666", "#666666", "#666666")) +
-  labs(x = "Honeybee/recording", y = "", color = "Apple cultivar", fill = "Apple cultivar") +
+  scale_color_manual (values =  c("#CC6666", "#CCCC99", "#FF9966")) +
+  scale_fill_manual (values =  c("#CC6666", "#CCCC99", "#FF9966")) +
+  labs(x = "Honeybee/recording", y = "Pollination deficit", color = "Apple cultivar", fill = "Apple cultivar") +
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
   theme(legend.position = "none") +
   ylim(-1, 1)
@@ -421,8 +419,7 @@ HBPoll <- make_prettyplot(dat = Deficit_Visits,
 
 PollVisBB <- expand.grid(Bombus_AvrgPh = seq(0, 0.00102, length = 100), Apple_variety = c("Aroma", "Discovery", "Summerred"), weight = 0)
 
-PollVisBB_22 <- make_prediction(PollVisBB, Model_PollDefVisit3) %>% 
-  filter(Apple_variety == 'Aroma') #filtered on the middle variety to only get one line in plot
+PollVisBB_22 <- make_prediction(PollVisBB, Model_PollDefVisit3) 
 
 BBPoll <- make_prettyplot(dat = Deficit_Visits,
                           Newdata = PollVisBB_22, 
@@ -432,20 +429,24 @@ BBPoll <- make_prettyplot(dat = Deficit_Visits,
                           ColorVariable = Apple_variety, 
                           SE = SE,
                           line_type = "solid") +
-  scale_color_manual (values = c("#666666", "#666666", "#666666")) +
-  scale_fill_manual (values = c("#666666", "#666666", "#666666")) +
+  scale_color_manual (values =  c("#CC6666", "#CCCC99", "#FF9966")) +
+  scale_fill_manual (values =  c("#CC6666", "#CCCC99", "#FF9966")) +
   labs(x = "Bumblebee/recording", y = "Pollination deficit", color = "Apple cultivar", fill = "Apple cultivar") +
   geom_hline(yintercept=0, linetype="dashed", color = "black", size=0.5) +
   theme(legend.position = "none") +
   ylim(-1, 1)
 
-CamPollDef <- ggarrange(SBPoll, BBPoll, HBPoll, nrow = 3)
+#CamPollDef <- ggarrange(SBPoll, BBPoll, HBPoll, nrow = 3)
+CamSBDef <- ggarrange(SBPoll, SBCam, common.legend = TRUE, labels = c("a", "b"))
+ggsave(CamSBDef, filename = "Figures/CamSBDef.jpeg", height = 6, width = 10)
+
+CamDef <- ggarrange(BBPoll, BBCam, HBPoll, HBCam, common.legend = TRUE, labels = c("a", "b"))
+ggsave(CamDef, filename = "Figures/CamDef.jpeg", height = 8, width = 10)
 
 #ggsave(CamPollDef, filename = "Figures/CamPollDef.jpeg", height = 8, width = 6)
 
 CamComb <- ggarrange(CamPollDef, CamProdDef, nrow = 1, labels = c("a", "b"))
 ggsave(CamComb, filename = "Figures/CamComb.jpeg", height = 8, width = 10)
-
 
 
 
