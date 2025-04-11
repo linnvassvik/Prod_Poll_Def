@@ -1,6 +1,6 @@
 Code used for paper by Vassvik et al. 2025: 
 
-#**"Solitary bees reduce pollination and production deficits in apple cultivation"** 
+# **Solitary bees reduce pollination and production deficits in apple cultivation** 
 
 Paper can be found here: https://www.sciencedirect.com/science/article/pii/S0167880925002026
 
